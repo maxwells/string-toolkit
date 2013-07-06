@@ -2,6 +2,10 @@
 
 A JavaScript implementation of some of my favorite ActiveSupport String methods.
 
+### Usage
+
+Include `lib/string-toolkit.js` in the appropriate place for your web framework and you're good to go. All methods are automatically added to `String.prototype`
+
 ### Methods
 
 - at(index) - returns character at specified index
@@ -112,3 +116,19 @@ A JavaScript implementation of some of my favorite ActiveSupport String methods.
 "alphabet soup".to(3) // returns "alph"
 "alphabet soup".to(100) // returns "alphabet soup"
 ```
+
+### Building
+
+Continuous building from the coffee files requires the following rubygems:
+
+- rake
+- guard
+- guard-rake
+
+To continuously build `lib/string-toolkit.js` and `spec/string-toolkit-spec.js` from their coffee files, run guard
+
+		$ guard
+
+### Testing
+
+Open `SpecRunner.html` in your favorite browser.
