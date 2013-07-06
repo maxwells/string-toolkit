@@ -200,6 +200,12 @@
         return expect("foo bar baz".parameterize()).toEqual("foo-bar-baz");
       });
     });
+    describe("reverse", function() {
+      return it("reverses the string", function() {
+        expect("foo".reverse()).toEqual("oof");
+        return expect("bar".reverse()).toEqual("rab");
+      });
+    });
     return describe("to", function() {
       it("returns substring from index 0 to position passed", function() {
         expect("hello".to(0)).toEqual("h");

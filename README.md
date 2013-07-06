@@ -100,6 +100,12 @@ A JavaScript implementation of some of my favorite ActiveSupport String methods.
 "99 red balloons".parameterize("_") // returns "99_red_balloons"
 ```
 
+- reverse() - returns string in reverse
+
+```javascript
+"alphabet soup".reverse() // returns "puos tebahpla"
+```
+
 - to(position) - returns a substring from 0th index to position
 
 ```javascript

@@ -90,6 +90,9 @@ stringExtension =
   parameterize: (separator = '-') ->
     @replace(/[^a-zA-Z0-9\ ]/g, "").replace(/\ /g, separator)
 
+  reverse: ->
+    @split("").reverse().join("")
+
   to: (position) ->
     @substr(0, position+1)
 

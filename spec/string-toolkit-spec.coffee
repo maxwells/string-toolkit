@@ -195,6 +195,12 @@ describe "String Toolkit", ->
     it "defaults to a dash separator", ->
       expect("foo bar baz".parameterize()).toEqual("foo-bar-baz")
 
+  describe "reverse", ->
+
+    it "reverses the string", ->
+      expect("foo".reverse()).toEqual("oof")
+      expect("bar".reverse()).toEqual("rab")
+
   describe "to", ->
 
     it "returns substring from index 0 to position passed", ->
