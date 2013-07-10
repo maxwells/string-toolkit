@@ -67,6 +67,13 @@ stringExtension =
 
   deconstantize: ->
 
+  define: (value) ->
+    namespace = @split "."
+    current = window
+    for object, i in namespace
+      current[object] ||= (if i == namespace.length - 1 then value else {})
+      current = current[object]
+    value
 
   include: (string) ->
     @indexOf(string) > -1

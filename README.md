@@ -44,6 +44,14 @@ Include `lib/string-toolkit.js` in the appropriate place for your web framework 
 "foo_bar_baz".dasherize() // returns "foo-bar-baz"
 ```
 
+- define - create set of namespaces if they don't already exist and define the last element. Does not destroy any data previously associated with namespace elements.
+
+```javascript
+"foo.bar".define("baz") // sets window.foo.bar to "baz"
+"a.b.c.repeater".define(function(value) { return value; })
+a.b.c.repeater("something!") // will return "something!"
+```
+
 - ellipses(maxLength) - returns truncated string with "..." appended of length maxLength. If maxLength is greater than length of string, then the string is unchanged
 
 ```javascript

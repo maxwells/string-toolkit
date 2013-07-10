@@ -113,6 +113,31 @@
         return expect("some longer phrase (with parentheses)".dasherize()).toEqual("some longer phrase (with parentheses)");
       });
     });
+    describe("define", function() {
+      it("defines all objects in a namespace if they do not exist", function() {
+        expect(function() {
+          return com.maxwells.hello;
+        }).toThrow(new ReferenceError("com is not defined"));
+        "com.maxwells.hello".define("world");
+        return expect(com.maxwells.hello).toEqual("world");
+      });
+      it("can define a function", function() {
+        "a.b.c.d.e.fn".define(function() {
+          return false;
+        });
+        return expect(a.b.c.d.e.fn()).toBeFalsy();
+      });
+      return it("does not remove any existing data from namespaces", function() {
+        window.foo = {
+          bar: {
+            baz: "bot"
+          }
+        };
+        "foo.bot.baz".define("bar");
+        expect(foo.bar.baz).toEqual("bot");
+        return expect(foo.bot.baz).toEqual("bar");
+      });
+    });
     describe("ellipses", function() {
       it("returns unchanged string if maxLength is greater than string length", function() {
         return expect("example".ellipses(15)).toEqual("example");
