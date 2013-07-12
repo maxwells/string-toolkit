@@ -31,6 +31,13 @@ underscore
 
 ###
 
+# access global namespace:
+# - window for browser
+# - global for node.js
+globalNamespace = ->
+  return window if window?
+  return global if global?
+
 stringExtension =
   at: (i) ->
     @charAt(i)
@@ -52,7 +59,7 @@ stringExtension =
 
   constantize: ->
     names = @split '.'
-    klass = window
+    klass = globalNamespace()
     klass = klass[name] for name in names
     klass
 
@@ -69,7 +76,7 @@ stringExtension =
 
   define: (value) ->
     namespace = @split "."
-    current = window
+    current = globalNamespace()
     for object, i in namespace
       current[object] ||= (if i == namespace.length - 1 then value else {})
       current = current[object]
@@ -103,6 +110,7 @@ stringExtension =
   to: (position) ->
     @substr(0, position+1)
 
+# aliases
 stringExtension.camelcase = stringExtension.camelize
 
 for key, value of stringExtension

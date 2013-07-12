@@ -4,7 +4,7 @@ A JavaScript implementation of some of my favorite ActiveSupport String methods.
 
 ### Usage
 
-Include `lib/string-toolkit.js` in the appropriate place for your web framework and you're good to go. All methods are automatically added to `String.prototype`
+Include `lib/string-toolkit.js` in the appropriate place for your web framework and you're good to go. All methods are automatically added to `String.prototype`.
 
 ### Methods
 
