@@ -38,9 +38,13 @@ globalNamespace = ->
   return window if window?
   return global if global?
 
-stringExtension =
+globalNamespace().com ||= {}
+com.maxwells ||= {}
+com.maxwells.String ||= {}
+
+class com.maxwells._S
   at: (i) ->
-    @charAt(i)
+    @charAt i
 
   isBlank: ->
     @match(/[^\t\n\ ]/) == null
@@ -110,8 +114,32 @@ stringExtension =
   to: (position) ->
     @substr(0, position+1)
 
-# aliases
-stringExtension.camelcase = stringExtension.camelize
+  # aliases
+com.maxwells._S.prototype.camelcase = com.maxwells._S.prototype.camelize
 
-for key, value of stringExtension
-  String.prototype[key] = value
+class com.maxwells.S
+
+  constructor: (s) ->
+    @s = s
+
+  @applyToPrototype = ->
+    for key, value of com.maxwells._S.prototype
+      String.prototype[key] = value
+
+  @removeFromPrototype = ->
+    for key, value of com.maxwells._S.prototype
+      delete String.prototype[key]
+
+  # boo: ->
+  #   return "hiss"
+
+for key, value of com.maxwells._S.prototype
+  do (key, value) ->
+    com.maxwells.S.prototype[key] = ->
+      value.apply(@s, arguments)
+
+globalNamespace().$S = (string) ->
+  new com.maxwells.S(string)
+
+# for key, value of stringExtension
+#   String.prototype[key] = value

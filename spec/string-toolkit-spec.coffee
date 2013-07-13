@@ -1,3 +1,5 @@
+com.maxwells.S.applyToPrototype()
+
 describe "String Toolkit", ->
 
   describe "at", ->
@@ -111,9 +113,9 @@ describe "String Toolkit", ->
   describe "define", ->
 
     it "defines all objects in a namespace if they do not exist", ->
-      expect(-> com.maxwells.hello).toThrow(new ReferenceError("com is not defined"))
-      "com.maxwells.hello".define("world")
-      expect(com.maxwells.hello).toEqual("world")
+      expect(-> com.maxwells.something.hello).toThrow(new ReferenceError("Cannot read property 'hello' of undefined"))
+      "com.maxwells.something.hello".define("world")
+      expect(com.maxwells.something.hello).toEqual("world")
 
     it "can define a function", ->
       "a.b.c.d.e.fn".define ->
