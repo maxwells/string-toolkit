@@ -1,6 +1,8 @@
 # String Toolkit
 
-A JavaScript implementation of some of my favorite ActiveSupport String methods.
+[![Build Status](https://travis-ci.org/maxwells/string-toolkit.png?branch=master)](https://travis-ci.org/maxwells/string-toolkit)
+
+A JavaScript implementation of some of my favorite String methods. Usable in Node.js or a web browser.
 
 ### Usage
 

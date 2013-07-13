@@ -1,3 +1,10 @@
+if global?
+  require('./../lib/string-toolkit.js');
+
+globalNamespace = ->
+  return window if window?
+  return global if global?
+
 com.maxwells.S.applyToPrototype()
 
 describe "String Toolkit", ->
@@ -88,16 +95,16 @@ describe "String Toolkit", ->
 
   describe "constantize", ->
 
-    it "takes a single word and finds that object within window", ->
-      window.foo =
+    it "takes a single word and finds that object within globalNamespace()", ->
+      globalNamespace().foo =
         hello: 'world'
-      expect("foo".constantize()).toEqual(window.foo)
+      expect("foo".constantize()).toEqual(globalNamespace().foo)
 
-    it "takes dot delimited names and finds corresponding object within window", ->
-      window.foo =
+    it "takes dot delimited names and finds corresponding object within globalNamespace()", ->
+      globalNamespace().foo =
         hello:
           world: "hello world"
-      expect('foo.hello.world'.constantize()).toEqual(window.foo.hello.world)
+      expect('foo.hello.world'.constantize()).toEqual(globalNamespace().foo.hello.world)
 
   describe "dasherize", ->
 
@@ -123,7 +130,7 @@ describe "String Toolkit", ->
       expect(a.b.c.d.e.fn()).toBeFalsy()
 
     it "does not remove any existing data from namespaces", ->
-      window.foo =
+      globalNamespace().foo =
         bar:
           baz: "bot"
       "foo.bot.baz".define("bar")
